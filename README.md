@@ -48,20 +48,6 @@ v=\frac{\nu-1}{2}.
 
 ## 损失函数
 
-自发曲率为
-
-\[
-\gamma(s)=\gamma_0e^{-ks},\qquad \gamma_0=100.
-\]
-
-将九个原始控制方程的残差 \(R_i\) 分别除以自发曲率，再计算均方残差：
-
-\[
-\widetilde R_i=\frac{R_i}{\gamma(s)},\qquad
-E_i=\left\langle\widetilde R_i^2\right\rangle,
-\qquad i=1,\ldots,9.
-\]
-
 加权训练损失为
 
 \[
@@ -102,17 +88,6 @@ python train.py --init model/B.m --epochs 20000 --lr 1e-5 \
 ```
 
 `--init` 加载网络权重，优化器重新初始化。程序保护 `model/B.m`，并拒绝覆盖已有训练输出。
-
-| 参数 | 默认值 |
-|---|---|
-| 采样点 | 400 / 轮 |
-| 最大轮数 | 600000 |
-| 学习率 | `1e-10 × sqrt(points)` |
-| 优化器 | Adam，`amsgrad=True` |
-| 随机种子 | 43 |
-| CPU 线程数 | 2 |
-| 日志间隔 | 1000 轮 |
-| 早停 | `score < 5e-5` |
 
 默认训练采样为 \(s\in[0,1]\)、\(a\in[-8,0]\)、\(v\in[0,1]\)、\(k\in[0,4]\)、\(T_\theta(0)\in[\pi/2,5\pi/8]\)。绘图时指定的参数可能超出默认训练采样范围。
 
