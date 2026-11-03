@@ -1,4 +1,3 @@
-"""Checkpoint-compatible hard-boundary network, extracted from PhaseK2to8.py."""
 import numpy as np
 import torch
 import torch as th

@@ -1,4 +1,3 @@
-"""Controlled entry point for the archived training equations."""
 import argparse
 import copy
 import json
@@ -14,7 +13,7 @@ ROOT = Path(__file__).resolve().parent
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description='Train the electrospinning PINN with spontaneous-curvature-normalized residuals.')
     parser.add_argument('--epochs', type=int, default=600000)
     parser.add_argument('--points', type=int, default=400)
     parser.add_argument('--lr', type=float, default=None)
@@ -30,7 +29,7 @@ def main():
         parser.error('lr must be positive')
     protected = ROOT / 'model/B.m'
     if args.output.resolve() == protected.resolve():
-        parser.error('model/B.m is the archived paper checkpoint; choose a different output')
+        parser.error('model/B.m is protected; choose a different output')
     if args.output.exists():
         parser.error('output already exists; choose a new output path')
     torch.set_num_threads(args.threads)

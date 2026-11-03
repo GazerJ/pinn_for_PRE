@@ -1,4 +1,3 @@
-"""Unchanged residual/loss expressions extracted from archive/pinnB_400points.py."""
 import torch
 import torch as th
 
@@ -53,15 +52,15 @@ def compute_loss(model, points):
     PZ = th.sin(theta) ** 2 * dphi
     Tdt = -tx * th.sin(phi) + ty * th.cos(phi)
     Tdf = tz
-    eq1 = (-lx * kappa * kt[0] - ly * kappa * kt[1] - lz * kappa * kt[2] + dl1 * Tdt) / kappa
-    eq2 = (-lx * kappa * kf[0] - ly * kappa * kf[1] - lz * kappa * kf[2] + dl1 * Tdf) / kappa
-    eq3 = dtx - kappa * th.sin(theta) * th.cos(phi)
-    eq4 = dty - kappa * th.sin(theta) * th.sin(phi)
-    eq5 = dtz - kappa * th.cos(theta)
-    eq6 = dlx + l1 * PX
-    eq7 = dly + l1 * PY
-    eq8 = dlz + l1 * PZ + l2
-    eq9 = tau - tx * PX - ty * PY - tz * PZ
+    eq1 = (-lx * kappa * kt[0] - ly * kappa * kt[1] - lz * kappa * kt[2] + dl1 * Tdt) / gamma
+    eq2 = (-lx * kappa * kf[0] - ly * kappa * kf[1] - lz * kappa * kf[2] + dl1 * Tdf) / gamma
+    eq3 = (dtx - kappa * th.sin(theta) * th.cos(phi)) / gamma
+    eq4 = (dty - kappa * th.sin(theta) * th.sin(phi)) / gamma
+    eq5 = (dtz - kappa * th.cos(theta)) / gamma
+    eq6 = (dlx + l1 * PX) / gamma
+    eq7 = (dly + l1 * PY) / gamma
+    eq8 = (dlz + l1 * PZ + l2) / gamma
+    eq9 = (tau - tx * PX - ty * PY - tz * PZ) / gamma
     eeq1 = eq1 ** 2
     eeq2 = eq2 ** 2
     eeq3 = eq3 ** 2

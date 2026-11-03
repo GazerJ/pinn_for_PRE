@@ -1,0 +1,26 @@
+{
+  "colormap": [
+    "#9C8147",
+    "#57479C",
+    "#47629C",
+    "#9C4762"
+  ],
+  "color_limits": [
+    -0.3836963102221489,
+    -0.042613446712493896
+  ],
+  "network_input_v": "(nu-1)/2",
+  "k": 4,
+  "initial_tangent_theta": 1.5707963267948966,
+  "source": "data",
+  "data_file": "zm.csv",
+  "grid_shape": [
+    129,
+    61
+  ],
+  "smoothing": "4x4 uniform convolution, reflect boundary",
+  "display_rows": [
+    0,
+    112
+  ]
+}
