@@ -38,30 +38,30 @@ pinn_for_PRE/
 
 参数关系为
 
-\[
+$$
 \alpha_0=10^{a/2},\qquad
 \beta_0=\frac{\alpha_0}{2(1+v)},\qquad
 v=\frac{\nu-1}{2}.
-\]
+$$
 
-其中 \(\nu\) 为泊松比，\(k\) 控制沿射流方向的材料参数变化，归一化长度 \(L=1\)。
+其中 $\nu$ 为泊松比，$k$ 控制沿射流方向的材料参数变化，归一化长度 $L=1$。
 
 ## 损失函数
 
 加权训练损失为
 
-\[
+$$
 \mathcal L=\sum_{i=1}^{9}
 \left[\frac{E_i}{A_i}+\log A_i\right],
 \qquad A_i=\sigma_i^2+10^{-9},
-\]
+$$
 
-其中 \(\sigma_i\) 为可训练参数。日志中的 `score` 为
+其中 $\sigma_i$ 为可训练参数。日志中的 `score` 为
 
-\[
+$$
 \mathrm{score}=\operatorname{mean}(E_i)
 +\operatorname{std}(E_i)+\max(E_i),
-\]
+$$
 
 标准差使用 PyTorch 默认的样本标准差。`loss` 含对数项，可以为负；`score` 为非负残差评分。
 
@@ -89,7 +89,7 @@ python train.py --init model/B.m --epochs 20000 --lr 1e-5 \
 
 `--init` 加载网络权重，优化器重新初始化。程序保护 `model/B.m`，并拒绝覆盖已有训练输出。
 
-默认训练采样为 \(s\in[0,1]\)、\(a\in[-8,0]\)、\(v\in[0,1]\)、\(k\in[0,4]\)、\(T_\theta(0)\in[\pi/2,5\pi/8]\)。绘图时指定的参数可能超出默认训练采样范围。
+默认训练采样为 $s\in[0,1]$、$a\in[-8,0]$、$v\in[0,1]$、$k\in[0,4]$、$T_\theta(0)\in[\pi/2,5\pi/8]$。绘图时指定的参数可能超出默认训练采样范围。
 
 ## 绘制相图
 
@@ -115,7 +115,7 @@ python plot_phase.py --recompute --checkpoint outputs/training/B-trained.m
 
 ![Mean-depth phase diagram](figures/phase.png)
 
-相图颜色表示平均深度 \(\langle z\rangle/L\)，横轴为 \(\alpha_0\)，纵轴为 \(\nu\)，固定 \(k=4\)、\(T_\theta(0)=\pi/2\)。配色为 `#9C8147 → #57479C → #47629C → #9C4762`，色限为 `[-0.3836963102221489, -0.042613446712493896]`。
+相图颜色表示平均深度 $\langle z\rangle/L$，横轴为 $\alpha_0$，纵轴为 $\nu$，固定 $k=4$、$T_\theta(0)=\pi/2$。配色为 `#9C8147 → #57479C → #47629C → #9C4762`，色限为 `[-0.3836963102221489, -0.042613446712493896]`。
 
 ## 数据格式
 
@@ -133,6 +133,6 @@ python plot_phase.py --recompute --checkpoint outputs/training/B-trained.m
 | 深度 | `z_i=0.001×sum(cos(Tθ)[:i])` |
 | 数据值 | `z_i` 的算术平均，保留符号 |
 
-绘图使用 4×4 均值卷积，显示行索引 0–112，即 \(\alpha_0\in[10^{-7},1]\)。
+绘图使用 4×4 均值卷积，显示行索引 0–112，即 $\alpha_0\in[10^{-7},1]$。
 
 提供的 `B.m` 与 `zm.csv` 可直接用于推理和绘图；运行训练命令会生成使用上述损失函数优化的新权重。
