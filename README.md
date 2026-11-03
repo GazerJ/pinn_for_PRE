@@ -59,8 +59,8 @@ $$
 其中 $\sigma_i$ 为可训练参数。日志中的 `score` 为
 
 $$
-\mathrm{score}=\operatorname{mean}(E_i)
-+\operatorname{std}(E_i)+\max(E_i),
+\mathrm{score}=\mathrm{mean}(E_i)
++\mathrm{std}(E_i)+\max(E_i),
 $$
 
 标准差使用 PyTorch 默认的样本标准差。`loss` 含对数项，可以为负；`score` 为非负残差评分。
